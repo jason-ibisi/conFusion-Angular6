@@ -12,7 +12,8 @@ import {
   MatCardModule,
   MatListModule,
   MatCheckboxModule,
-  MatInputModule
+  MatInputModule,
+  MatGridListModule
 } from '@angular/material';
 
 @NgModule({
@@ -28,7 +29,8 @@ import {
     MatCardModule,
     MatListModule,
     MatCheckboxModule,
-    MatInputModule
+    MatInputModule,
+    MatGridListModule
   ],
   exports: [
     MatDialogModule,
@@ -42,7 +44,8 @@ import {
     MatCardModule,
     MatListModule,
     MatCheckboxModule,
-    MatInputModule
+    MatInputModule,
+    MatGridListModule
   ]
 })
 export class MaterialModule { }
