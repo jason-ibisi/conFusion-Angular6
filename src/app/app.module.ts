@@ -10,6 +10,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -27,6 +29,8 @@ import { LeaderService } from './services/leader.service';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
+
+import { baseURL } from './shared/baseurl';
 
 // Add an icon to the library for convenient access in other components
 library.add(fas, far, fab);
@@ -52,11 +56,14 @@ library.add(fas, far, fab);
     MaterialModule,
     FontAwesomeModule,
     AppRoutingModule,
+    HttpClientModule,
+    HttpModule,
   ],
   providers: [
     DishService,
     PromotionService,
-    LeaderService
+    LeaderService,
+    { provide: 'BaseURL', useValue: baseURL }
   ],
   entryComponents: [
     LoginComponent
