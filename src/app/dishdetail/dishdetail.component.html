@@ -12,10 +12,16 @@
       <mat-card-content>
         <p>{{ dish.description}}</p>
       </mat-card-content>
-      <mat-card-actions>
+      <mat-card-actions class="text-center">
+        <button mat-button [routerLink]="['/dishdetail', prev]">
+          <fa-icon [icon]="['fas', 'chevron-circle-left']" size="lg"></fa-icon>
+        </button>
         <button mat-button (click)="goBack()">BACK</button>
         <button mat-button>LIKE</button>
         <button mat-button>SHARE</button>
+        <button mat-button [routerLink]="['/dishdetail', next]">
+          <fa-icon [icon]="['fas', 'chevron-circle-right']" size="lg"></fa-icon>
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>
@@ -37,7 +43,11 @@
         </mat-list>
       </mat-card-content>
     </mat-card>
+  </div>
 
+  <div fxFlex [hidden]="dish">
+    <mat-spinner></mat-spinner>
+    <h4>Loading ... Please Wait</h4>
   </div>
 
 </div>
