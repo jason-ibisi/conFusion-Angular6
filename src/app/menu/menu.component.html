@@ -18,7 +18,13 @@
     </mat-grid-list>
   </div>
 
-  <div fxFlex [hidden]="dishes">
+  <div fxFlex [hidden]="dishes || errMessage">
     <mat-spinner></mat-spinner> <h4>Loading ... Please Wait</h4>
   </div>
+
+  <div fxFlex *ngIf="errMessage">
+    <h2>Error</h2>
+    <h5>{{ errMessage }}</h5>
+  </div>
+
 </div>
