@@ -36,7 +36,7 @@
 
   <div fxFlex fxFlexOffSet="20px" class="form-size">
     <h3>Send us your Feedback</h3>
-    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()" *ngIf="showForm" [@expand]>
       <p>
         <mat-form-field class="half-width">
           <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
@@ -65,18 +65,16 @@
           </mat-error>
         </mat-form-field>
       </p>
-      <table class="form-size">
-        <td>
-          <mat-slide-toggle formControlName="agree">May we contact you ?</mat-slide-toggle>
-        </td>
-        <td>
-          <mat-select placeholder="How?" formControlName="contacttype">
+      <p>
+        <mat-slide-toggle formControlName="agree" class="half-width">May we contact you ?</mat-slide-toggle>
+        <mat-form-field class="half-width">
+          <mat-select placeholder="How ?" formControlName="contacttype">
             <mat-option *ngFor="let ctype of contacttype" [value]="ctype">
               {{ ctype }}
             </mat-option>
           </mat-select>
-        </td>
-      </table>
+        </mat-form-field>
+      </p>
       <p>
         <mat-form-field class="full-width">
           <textarea matInput formControlName="message" placeholder="Your Feedback" rows="12"></textarea>
@@ -89,4 +87,27 @@
         [disabled]="feedbackForm.invalid">Submit</button>
     </form>
   </div>
+
+  <div fxFlex [hidden]="showForm || submitted" [@expand]>
+    <h4>Submitting Form ... Please Wait</h4>
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div fxFlex *ngIf="submitted" [@expand]>
+    <h3>Your Submission</h3>
+      <p>First Name: {{ submitted.firstname}}</p>
+      <p>Last Name: {{ submitted.lastname}}</p>
+      <p>Tel. Number: {{ submitted.telnum}}</p>
+      <p>Email: {{ submitted.firstname}}</p>
+      <p>Contact You?: {{ submitted.agree}}</p>
+      <p>How?: {{ submitted.contacttype}}</p>
+      <p>Feedback: {{ submitted.message}}</p>
+  </div>
+
+  <div fxFlex *ngIf="errorMessage">
+    <h2>Error</h2>
+    <h5>{{ errMessage }}</h5>
+  </div>
 </div>
+
+
